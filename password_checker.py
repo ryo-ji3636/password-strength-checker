@@ -1,4 +1,24 @@
+# Password strength checker script
+
+#import getpass because we want to hide the password input from the console
+import getpass
+
+# Load common passwords from a file into a list
+COMMON_PASSWORDS = []
+
+with open("common_passwords.txt") as f:
+    for line in f:
+        word = line.strip()
+        if word:
+            COMMON_PASSWORDS.append(word)
+
 def is_strong(password):
+    # convert password to lowercase for common password check
+    #(it makes big-O small because we avoid repeated lower() calls)
+    lower_password = password.lower()  
+    for common in COMMON_PASSWORDS:
+        if common in lower_password:
+            return False
     # check password strength
     has_digit = False
     has_upper = False
@@ -30,7 +50,7 @@ def is_strong(password):
 
 
 # Input password from user
-password = input("Enter your password: ")
+password = getpass.getpass("Enter your password: ")
 
 # check if the password is strong
 if is_strong(password):
