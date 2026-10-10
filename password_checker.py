@@ -49,11 +49,13 @@ def is_strong(password):
         return False
 
 
-# Input password from user
-password = getpass.getpass("Enter your password: ")
+if __name__ == "__main__":
+    # Input password from user
+    password = getpass.getpass("Enter your password: ")
 
-# check if the password is strong
-if is_strong(password):
-    print("Strong password")
-else:
-    print("Weak password")
+    # check if the password is strong
+    if is_strong(password):
+        print("Strong password")
+    else:
+        print("Weak password")
+
